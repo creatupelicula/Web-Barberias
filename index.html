@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>DISTRITO BARBERÍA — Barbería de barrio con técnica y estilo</title>
+<meta name="description" content="Barbería de barrio con técnica, carácter y estilo. Cortes modernos, barbas impecables. Reserva tu cita en DISTRITO BARBERÍA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --carbon:#12110F;
+    --black-warm:#0B0B0A;
+    --cream:#F3EEE4;
+    --white-warm:#FAF7F1;
+    --copper:#ED8848;
+    --copper-hover:#D96F30;
+    --gray-warm:#AAA39A;
+    --border-light:#DDD6CB;
+    --text-dark:#181715;
+
+    --font-display:'Bebas Neue', 'Oswald', sans-serif;
+    --font-body:'Inter', -apple-system, sans-serif;
+
+    --header-h:70px;
+    --container-max:1400px;
+  }
+  @media (min-width:1024px){ :root{ --header-h:84px; } }
+
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; }
+  }
+  body{
+    font-family:var(--font-body);
+    color:var(--text-dark);
+    background:var(--white-warm);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    font-size:16px;
+  }
+  body.modal-open{ overflow:hidden; }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  button{ font:inherit; color:inherit; background:none; border:none; cursor:pointer; }
+  ul{ list-style:none; }
+
+  .container{ width:100%; max-width:var(--container-max); margin:0 auto; padding:0 20px; }
+  @media (min-width:1024px){ .container{ padding:0 48px; } }
+
+  :focus-visible{ outline:2px solid var(--copper); outline-offset:2px; }
+  .visually-hidden{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+  .eyebrow{ display:inline-flex; align-items:center; gap:10px; font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; }
+  .eyebrow::before{ content:''; display:block; width:26px; height:2px; background:var(--copper); flex:none; }
+
+  section{ scroll-margin-top:var(--header-h); }
+
+  /* ============ HEADER ============ */
+  .site-header{
+    position:fixed; top:0; left:0; right:0; z-index:200; height:var(--header-h);
+    display:flex; align-items:center;
+    background:linear-gradient(180deg, rgba(11,11,10,.72) 0%, rgba(11,11,10,.32) 70%, rgba(11,11,10,0) 100%);
+    transition:background-color .25s ease;
+  }
+  .site-header.is-solid{ background:rgba(11,11,10,.94); backdrop-filter:blur(6px); }
+  .header-inner{ display:flex; align-items:center; justify-content:space-between; width:100%; }
+
+  .logo{ display:flex; flex-direction:column; line-height:1; }
+  .logo .mark-main{ font-family:var(--font-display); color:var(--white-warm); font-size:24px; letter-spacing:.03em; }
+  .logo .mark-sub{ font-family:var(--font-body); color:var(--copper); font-size:9px; font-weight:700; letter-spacing:.28em; margin-top:2px; }
+  @media (min-width:1024px){ .logo .mark-main{ font-size:28px; } .logo .mark-sub{ font-size:10px; } }
+
+  .main-nav{ display:none; }
+  @media (min-width:1024px){
+    .main-nav{ display:flex; gap:36px; position:absolute; left:50%; transform:translateX(-50%); }
+    .main-nav a{ color:var(--white-warm); font-size:14px; font-weight:500; letter-spacing:.02em; padding-bottom:6px; transition:color .2s ease; }
+    .main-nav a:hover{ color:var(--copper); }
+  }
+
+  .header-right{ display:flex; align-items:center; gap:12px; }
+
+  /* ============ SELECTOR DE REGIÓN ============ */
+  .region-toggle{
+    display:flex; align-items:center; gap:2px; padding:3px;
+    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2); border-radius:999px;
+  }
+  .region-toggle-btn{
+    display:inline-flex; align-items:center; gap:5px; padding:7px 11px; border-radius:999px;
+    font-size:12px; font-weight:700; letter-spacing:.02em; color:var(--white-warm); opacity:.6; white-space:nowrap;
+    transition:background-color .2s ease, color .2s ease, opacity .2s ease;
+  }
+  .region-toggle-btn:hover{ opacity:.9; }
+  .region-toggle-btn.is-active{ background:var(--copper); color:var(--text-dark); opacity:1; }
+  .region-toggle-mobile{ margin-top:22px; align-self:flex-start; }
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    font-family:var(--font-body); font-weight:700; font-size:13px; letter-spacing:.04em; text-transform:uppercase;
+    border-radius:6px; white-space:nowrap; cursor:pointer;
+    transition:background-color .2s ease, opacity .2s ease, transform .2s ease;
+  }
+  .btn .arrow{ transition:transform .2s ease; }
+  .btn:hover .arrow{ transform:translateX(3px); }
+  .btn-primary{ background:var(--copper); color:var(--text-dark); }
+  .btn-primary:hover{ background:var(--copper-hover); }
+  .btn-ghost{ background:transparent; border:1px solid var(--border-light); color:var(--text-dark); }
+  .btn-ghost:hover{ border-color:var(--copper); color:var(--copper-hover); }
+  .btn-ghost-dark{ background:transparent; border:1px solid rgba(255,255,255,.28); color:var(--white-warm); }
+  .btn-ghost-dark:hover{ border-color:var(--copper); color:var(--copper); }
+
+  .btn-header{ height:46px; padding:0 22px; display:none; }
+  @media (min-width:1024px){ .btn-header{ display:inline-flex; } }
+
+  .menu-toggle{ display:flex; flex-direction:column; justify-content:center; gap:5px; width:44px; height:44px; align-items:center; }
+  @media (min-width:1024px){ .menu-toggle{ display:none; } }
+  .menu-toggle span{ display:block; width:22px; height:2px; background:var(--white-warm); transition:transform .25s ease, opacity .25s ease; }
+  .menu-toggle[aria-expanded="true"] span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .menu-toggle[aria-expanded="true"] span:nth-child(2){ opacity:0; }
+  .menu-toggle[aria-expanded="true"] span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+  .mobile-nav{
+    position:fixed; inset:0; z-index:199; background:var(--black-warm);
+    display:flex; flex-direction:column; padding:calc(var(--header-h) + 24px) 28px 28px;
+    transform:translateX(100%); transition:transform .3s ease;
+  }
+  .mobile-nav.is-open{ transform:translateX(0); }
+  .mobile-nav ul{ display:flex; flex-direction:column; gap:4px; }
+  .mobile-nav a{
+    display:block; padding:16px 4px; font-family:var(--font-display); font-size:28px; letter-spacing:.02em;
+    color:var(--white-warm); border-bottom:1px solid rgba(255,255,255,.1);
+  }
+  .mobile-nav .btn-primary{ margin-top:28px; height:52px; }
+
+  /* ============ HERO ============ */
+  .hero{ position:relative; min-height:640px; display:flex; flex-direction:column; overflow:hidden; }
+  @media (min-width:1024px){ .hero{ min-height:660px; } }
+  .hero-photo{ position:absolute; inset:0; z-index:0; }
+  .hero-photo img{ width:100%; height:100%; object-fit:cover; object-position:center 20%; }
+  .hero-photo::after{
+    content:''; position:absolute; inset:0;
+    background:
+      linear-gradient(90deg, rgba(11,11,10,.88) 0%, rgba(11,11,10,.62) 32%, rgba(11,11,10,.28) 58%, rgba(11,11,10,.42) 100%),
+      linear-gradient(0deg, rgba(11,11,10,.85) 0%, rgba(11,11,10,.15) 26%, rgba(11,11,10,.05) 55%);
+  }
+  @media (max-width:1023px){
+    .hero-photo::after{ background:linear-gradient(180deg, rgba(11,11,10,.55) 0%, rgba(11,11,10,.35) 30%, rgba(11,11,10,.55) 62%, rgba(11,11,10,.96) 100%); }
+  }
+  .hero-inner{
+    position:relative; z-index:1; flex:1; display:flex; flex-direction:column;
+    padding-top:calc(var(--header-h) + 28px); padding-bottom:32px;
+  }
+  @media (min-width:1024px){
+    .hero-inner{ flex-direction:row; align-items:center; justify-content:space-between; padding-top:var(--header-h); padding-bottom:0; gap:40px; }
+  }
+  .hero-content{ max-width:100%; }
+  @media (min-width:1024px){ .hero-content{ max-width:600px; padding-bottom:40px; } }
+  .hero-content .eyebrow{ color:var(--white-warm); margin-bottom:18px; }
+  .hero-title{
+    font-family:var(--font-display); color:var(--white-warm); text-transform:uppercase;
+    font-size:44px; line-height:0.96; letter-spacing:.01em; margin-bottom:18px;
+  }
+  @media (min-width:600px){ .hero-title{ font-size:54px; } }
+  @media (min-width:1024px){ .hero-title{ font-size:76px; margin-bottom:22px; } }
+  @media (min-width:1300px){ .hero-title{ font-size:84px; } }
+  .hero-text{ color:var(--cream); font-size:16px; line-height:1.55; max-width:400px; margin-bottom:26px; }
+  @media (min-width:1024px){ .hero-text{ font-size:18px; margin-bottom:32px; } }
+  .hero-content .btn-primary{ height:54px; padding:0 28px; font-size:14px; }
+  @media (max-width:1023px){ .hero-content .btn-primary{ display:none; } }
+
+  /* ============ BOOKING CARD (portada) ============ */
+  .booking-card{
+    position:relative; z-index:1; background:var(--white-warm); border-radius:14px; padding:26px;
+    margin:0 20px; box-shadow:0 18px 40px rgba(0,0,0,.28);
+  }
+  @media (min-width:1024px){ .booking-card{ width:376px; flex:none; margin:0; padding:28px; align-self:center; } }
+  .booking-card h3{ font-family:var(--font-display); font-size:24px; letter-spacing:.01em; text-transform:uppercase; margin-bottom:4px; }
+  .booking-card > p{ font-size:14px; color:var(--gray-warm); margin-bottom:20px; }
+  .booking-fields{ display:flex; flex-direction:column; gap:10px; margin-bottom:20px; }
+
+  .field-row{
+    display:flex; align-items:center; gap:14px; width:100%; min-height:60px; padding:0 16px;
+    background:var(--white-warm); border:1px solid var(--border-light); border-radius:10px; text-align:left;
+    transition:border-color .2s ease, background-color .2s ease;
+  }
+  .field-row:hover{ border-color:var(--copper); }
+  .field-icon{ flex:none; width:20px; height:20px; color:var(--text-dark); }
+  .field-icon svg{ width:100%; height:100%; }
+  .field-text{ flex:1; min-width:0; }
+  .field-label{ font-size:14px; font-weight:600; color:var(--text-dark); }
+  .field-value{ font-size:13px; color:var(--gray-warm); margin-top:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .field-row.is-filled .field-value{ color:var(--copper-hover); font-weight:600; }
+  .field-chevron{ flex:none; width:16px; height:16px; color:var(--gray-warm); }
+
+  .btn-continue{ width:100%; height:52px; font-size:14px; }
+
+  /* ============ BENEFITS STRIP ============ */
+  .benefits{ background:var(--carbon); padding:36px 0; }
+  .benefits-grid{ display:grid; grid-template-columns:1fr; gap:24px; }
+  @media (min-width:768px){ .benefits-grid{ grid-template-columns:repeat(3,1fr); gap:0; } }
+  .benefit{ display:flex; align-items:flex-start; gap:16px; padding:8px 0; }
+  @media (min-width:768px){
+    .benefit{ padding:8px 32px; border-left:1px solid rgba(255,255,255,.1); }
+    .benefit:first-child{ border-left:none; padding-left:0; }
+  }
+  .benefit-icon{ flex:none; width:26px; height:26px; color:var(--copper); margin-top:2px; }
+  .benefit-icon svg{ width:100%; height:100%; }
+  .benefit h4{ font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--white-warm); margin-bottom:4px; }
+  .benefit p{ font-size:14px; color:var(--gray-warm); line-height:1.4; }
+
+  /* ============ SECTION HEADINGS ============ */
+  .section-head{ margin-bottom:36px; }
+  .section-head .eyebrow{ margin-bottom:16px; }
+  .section-head h2{ font-family:var(--font-display); font-size:34px; line-height:1.0; text-transform:uppercase; letter-spacing:.01em; }
+  @media (min-width:1024px){ .section-head h2{ font-size:48px; } }
+  .section-head.on-dark .eyebrow{ color:var(--copper); }
+  .section-head.on-dark h2{ color:var(--white-warm); }
+  .section-head.on-light .eyebrow{ color:var(--copper-hover); }
+
+  /* ============ SERVICIOS ============ */
+  .services{ background:var(--carbon); padding:64px 0 60px; }
+  .service-grid{ display:grid; grid-template-columns:1fr; gap:18px; }
+  @media (min-width:640px){ .service-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (min-width:1024px){ .service-grid{ grid-template-columns:repeat(3,1fr); gap:22px; } }
+
+  .service-card{
+    background:#1B1917; border:1px solid rgba(255,255,255,.08); border-radius:12px; overflow:hidden;
+    display:flex; flex-direction:column;
+  }
+  .service-card-photo{ height:170px; overflow:hidden; }
+  .service-card-photo img{ width:100%; height:100%; object-fit:cover; transition:transform .4s ease; }
+  .service-card:hover .service-card-photo img{ transform:scale(1.05); }
+  .service-card-body{ padding:18px 20px 20px; display:flex; flex-direction:column; gap:14px; flex:1; }
+  .service-card-name{ font-family:var(--font-display); font-size:21px; letter-spacing:.01em; text-transform:uppercase; color:var(--white-warm); }
+  .service-card-meta{ display:flex; align-items:center; justify-content:space-between; }
+  .service-card-price{ font-size:18px; font-weight:700; color:var(--copper); }
+  .service-card-duration{ display:flex; align-items:center; gap:6px; font-size:13px; color:var(--gray-warm); }
+  .service-card-duration svg{ width:14px; height:14px; }
+  .service-card-body .btn{ margin-top:auto; height:44px; }
+
+  /* ============ PROMO STRIP ============ */
+  .promo{
+    background:linear-gradient(120deg, #1B1712 0%, var(--carbon) 55%, #201B14 100%);
+    border-top:1px solid rgba(237,136,72,.25); border-bottom:1px solid rgba(237,136,72,.25);
+    padding:44px 0;
+  }
+  .promo .container{ display:flex; flex-direction:column; align-items:flex-start; gap:18px; }
+  @media (min-width:768px){ .promo .container{ flex-direction:row; align-items:center; justify-content:space-between; } }
+  .promo-eyebrow{ font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--copper); margin-bottom:8px; display:block; }
+  .promo-title{ font-family:var(--font-display); font-size:32px; letter-spacing:.01em; text-transform:uppercase; color:var(--white-warm); line-height:1; }
+  @media (min-width:1024px){ .promo-title{ font-size:40px; } }
+  .promo-btn{ height:52px; padding:0 26px; flex:none; }
+
+  /* ============ EQUIPO ============ */
+  .team{ background:var(--white-warm); padding:64px 0 60px; }
+  .team-grid{ display:grid; grid-template-columns:1fr; gap:20px; }
+  @media (min-width:640px) and (max-width:1023px){ .team-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:639px){
+    .team-grid{ display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:16px; padding-bottom:8px; margin:0 -20px; padding-left:20px; padding-right:20px; }
+    .team-grid::-webkit-scrollbar{ display:none; }
+    .team-card{ scroll-snap-align:start; flex:0 0 82%; }
+  }
+  @media (min-width:1024px){ .team-grid{ grid-template-columns:repeat(3,1fr); gap:24px; } }
+
+  .team-card{ background:var(--cream); border:1px solid var(--border-light); border-radius:12px; overflow:hidden; }
+  .team-card-photo{ height:220px; overflow:hidden; }
+  .team-card-photo img{ width:100%; height:100%; object-fit:cover; }
+  .team-card-body{ padding:20px; }
+  .team-card-name{ font-family:var(--font-display); font-size:22px; text-transform:uppercase; letter-spacing:.01em; margin-bottom:2px; }
+  .team-card-specialty{ font-size:13px; color:var(--copper-hover); font-weight:600; margin-bottom:10px; }
+  .team-card-row{ display:flex; align-items:center; gap:8px; font-size:13px; color:var(--gray-warm); margin-bottom:6px; }
+  .team-card-row svg{ width:14px; height:14px; flex:none; }
+  .team-card-services{ font-size:13px; color:var(--text-dark); margin:10px 0 16px; line-height:1.5; }
+  .team-card-services b{ color:var(--gray-warm); font-weight:600; display:block; font-size:11px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:4px; }
+  .team-card .btn{ width:100%; height:46px; }
+  .rating-inline{ display:inline-flex; align-items:center; gap:4px; color:var(--copper-hover); font-weight:700; }
+  .rating-inline svg{ width:13px; height:13px; }
+  .rating-count{ color:var(--gray-warm); }
+  .team-card-actions{ display:flex; gap:10px; margin-top:4px; }
+  .team-card-actions .btn{ flex:1; width:auto; height:46px; }
+
+  /* ============ PERFIL DE BARBERO ============ */
+  .profile-modal{ max-width:640px; }
+  .profile-photo{ width:100%; height:220px; border-radius:12px; overflow:hidden; margin-bottom:18px; }
+  .profile-photo img{ width:100%; height:100%; object-fit:cover; }
+  .profile-name{ font-family:var(--font-display); font-size:26px; text-transform:uppercase; letter-spacing:.01em; margin-bottom:2px; }
+  .profile-specialty{ font-size:14px; color:var(--copper-hover); font-weight:600; margin-bottom:10px; }
+  .profile-meta-row{ display:flex; flex-wrap:wrap; align-items:center; gap:14px; font-size:13px; color:var(--gray-warm); margin-bottom:16px; }
+  .profile-meta-row .rating-inline{ font-size:14px; }
+  .profile-bio{ font-size:14px; line-height:1.6; color:var(--text-dark); margin-bottom:22px; }
+  .profile-section-title{ font-family:var(--font-display); font-size:18px; letter-spacing:.01em; text-transform:uppercase; margin-bottom:12px; }
+  .profile-services{ display:flex; flex-direction:column; gap:8px; margin-bottom:24px; }
+  .profile-service-row{ display:flex; align-items:center; justify-content:space-between; padding:10px 14px; background:var(--cream); border-radius:8px; font-size:13px; }
+  .profile-service-row b{ font-weight:700; }
+  .profile-service-row span{ color:var(--copper-hover); font-weight:700; }
+  .profile-gallery-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-bottom:24px; }
+  .profile-gallery-grid img{ width:100%; height:74px; object-fit:cover; border-radius:8px; }
+  @media (max-width:479px){ .profile-gallery-grid{ grid-template-columns:repeat(3,1fr); } }
+  .profile-testimonials{ display:flex; flex-direction:column; gap:12px; }
+  .profile-testimonials .testimonial-card{ padding:16px; }
+  .profile-no-reviews{ font-size:13px; color:var(--gray-warm); }
+
+  /* ============ GALERÍA Y TESTIMONIOS ============ */
+  .showcase{ background:var(--cream); padding:64px 0 60px; }
+  .showcase-cols{ display:grid; grid-template-columns:1fr; gap:56px; }
+  @media (min-width:1024px){ .showcase-cols{ grid-template-columns:1.15fr 1fr; gap:48px; } }
+
+  .subhead{ font-family:var(--font-display); font-size:22px; letter-spacing:.01em; text-transform:uppercase; margin-bottom:18px; }
+
+  .gallery-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+  .gallery-item{ position:relative; border-radius:10px; overflow:hidden; height:130px; cursor:zoom-in; }
+  .gallery-item:first-child{ grid-column:1 / -1; height:220px; }
+  .gallery-item img{ width:100%; height:100%; object-fit:cover; transition:transform .3s ease; }
+  .gallery-item:hover img{ transform:scale(1.05); }
+  @media (min-width:640px){
+    .gallery-grid{ grid-template-columns:repeat(3,1fr); }
+    .gallery-item:first-child{ grid-column:1 / span 2; grid-row:1 / span 2; height:100%; }
+    .gallery-item{ height:135px; }
+  }
+
+  .testimonial-list{ display:grid; grid-template-columns:1fr; gap:14px; }
+  @media (max-width:639px){
+    .testimonial-list{ display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:14px; margin:0 -20px; padding:0 20px 6px; }
+    .testimonial-list::-webkit-scrollbar{ display:none; }
+    .testimonial-card{ scroll-snap-align:start; flex:0 0 100%; }
+  }
+  .testimonial-card{ background:var(--white-warm); border:1px solid var(--border-light); border-radius:12px; padding:20px; }
+  .testimonial-stars{ color:var(--copper); font-size:14px; letter-spacing:2px; margin-bottom:10px; }
+  .testimonial-quote{ font-size:15px; line-height:1.55; margin-bottom:16px; }
+  .testimonial-author{ display:flex; align-items:center; gap:12px; }
+  .testimonial-author img{ width:40px; height:40px; border-radius:50%; object-fit:cover; }
+  .testimonial-name{ font-size:14px; font-weight:700; }
+  .testimonial-service{ font-size:12px; color:var(--gray-warm); }
+
+  /* Lightbox */
+  .lightbox{ position:fixed; inset:0; z-index:400; background:rgba(11,11,10,.94); display:none; align-items:center; justify-content:center; padding:20px; }
+  .lightbox.is-open{ display:flex; }
+  .lightbox-img-wrap{ max-width:1000px; width:100%; }
+  .lightbox-img-wrap img{ width:100%; max-height:76vh; object-fit:contain; border-radius:8px; }
+  .lightbox-caption{ color:var(--gray-warm); font-size:13px; text-align:center; margin-top:14px; }
+  .lightbox-close, .lightbox-prev, .lightbox-next{
+    position:absolute; width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,.1); color:var(--white-warm);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .lightbox-close{ top:20px; right:20px; }
+  .lightbox-prev{ left:20px; top:50%; transform:translateY(-50%); }
+  .lightbox-next{ right:20px; top:50%; transform:translateY(-50%); }
+  .lightbox-close svg,.lightbox-prev svg,.lightbox-next svg{ width:20px; height:20px; }
+
+  /* ============ UBICACIÓN ============ */
+  .location{ background:var(--carbon); padding:64px 0 60px; }
+  .location-grid{ display:grid; grid-template-columns:1fr; gap:32px; }
+  @media (min-width:1024px){ .location-grid{ grid-template-columns:1fr 1fr; gap:48px; align-items:stretch; } }
+  .location-map{ background:#1B1917; border:1px solid rgba(255,255,255,.1); border-radius:12px; min-height:220px; display:flex; align-items:center; justify-content:center; color:var(--gray-warm); font-size:13px; }
+  @media (min-width:1024px){ .location-map{ min-height:100%; } }
+  .location-details{ display:flex; flex-direction:column; gap:18px; }
+  .location-row{ display:flex; align-items:flex-start; gap:14px; }
+  .location-row-icon{ flex:none; width:22px; height:22px; color:var(--copper); margin-top:2px; }
+  .location-row-icon svg{ width:100%; height:100%; }
+  .location-row-title{ font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--white-warm); margin-bottom:3px; }
+  .location-row-text{ font-size:14px; color:var(--gray-warm); line-height:1.5; }
+  .location-actions{ display:flex; gap:12px; flex-wrap:wrap; margin-top:6px; }
+  .location-actions .btn{ height:46px; padding:0 22px; }
+
+  /* ============ FAQ ============ */
+  .faq{ background:var(--cream); padding:60px 0 64px; }
+  .faq-list{ max-width:760px; margin:0 auto; display:flex; flex-direction:column; gap:10px; }
+  .faq-item{ background:var(--white-warm); border:1px solid var(--border-light); border-radius:10px; overflow:hidden; }
+  .faq-question{
+    width:100%; display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding:18px 20px; text-align:left; font-size:15px; font-weight:600;
+  }
+  .faq-question svg{ flex:none; width:18px; height:18px; color:var(--copper-hover); transition:transform .2s ease; }
+  .faq-item.is-open .faq-question svg{ transform:rotate(180deg); }
+  .faq-answer{ max-height:0; overflow:hidden; transition:max-height .25s ease; }
+  .faq-item.is-open .faq-answer{ max-height:220px; }
+  .faq-answer p{ padding:0 20px 18px; font-size:14px; color:var(--gray-warm); line-height:1.55; }
+
+  /* ============ FOOTER ============ */
+  .site-footer{ background:var(--black-warm); padding:52px 0 28px; }
+  .footer-top{ display:grid; grid-template-columns:1fr; gap:36px; padding-bottom:36px; border-bottom:1px solid rgba(255,255,255,.1); }
+  @media (min-width:768px){ .footer-top{ grid-template-columns:1.2fr 1fr 1fr 1fr; gap:24px; } }
+  .footer-brand .mark-main{ font-family:var(--font-display); color:var(--white-warm); font-size:26px; }
+  .footer-brand .mark-sub{ color:var(--copper); font-size:10px; font-weight:700; letter-spacing:.28em; display:block; margin:2px 0 14px; }
+  .footer-brand p{ font-size:13px; color:var(--gray-warm); line-height:1.6; max-width:280px; }
+  .footer-col h5{ font-size:12px; text-transform:uppercase; letter-spacing:.1em; color:var(--white-warm); margin-bottom:14px; }
+  .footer-col ul{ display:flex; flex-direction:column; gap:10px; }
+  .footer-col a, .footer-col p{ font-size:13px; color:var(--gray-warm); }
+  .footer-col a:hover{ color:var(--copper); }
+  .footer-social{ display:flex; gap:10px; margin-top:14px; }
+  .footer-social a{ width:36px; height:36px; border-radius:50%; border:1px solid rgba(255,255,255,.16); display:flex; align-items:center; justify-content:center; color:var(--white-warm); }
+  .footer-social a:hover{ border-color:var(--copper); color:var(--copper); }
+  .footer-social svg{ width:16px; height:16px; }
+  .footer-bottom{ display:flex; flex-direction:column; gap:16px; align-items:flex-start; padding-top:24px; }
+  @media (min-width:768px){ .footer-bottom{ flex-direction:row; align-items:center; justify-content:space-between; } }
+  .footer-legal{ display:flex; gap:18px; flex-wrap:wrap; font-size:12px; color:var(--gray-warm); }
+  .footer-legal a:hover{ color:var(--copper); }
+
+  /* ============ MOBILE STICKY CTA ============ */
+  .mobile-sticky-cta{
+    position:fixed; left:16px; right:16px; bottom:16px; z-index:150;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  .mobile-sticky-cta .btn{ width:100%; height:52px; font-size:14px; box-shadow:0 10px 26px rgba(0,0,0,.35); }
+  @media (min-width:1024px){ .mobile-sticky-cta{ display:none; } }
+
+  /* ============ BOOKING MODAL (único sistema) ============ */
+  .modal-backdrop{
+    position:fixed; inset:0; z-index:300; background:rgba(11,11,10,.6);
+    display:none; align-items:center; justify-content:center; padding:24px;
+  }
+  .modal-backdrop.is-open{ display:flex; }
+
+  .booking-modal{
+    background:var(--white-warm); width:100%; max-width:560px; border-radius:16px;
+    max-height:88vh; display:flex; flex-direction:column; overflow:hidden;
+  }
+  @media (max-width:767px){
+    .modal-backdrop{ padding:0; }
+    .booking-modal{
+      max-width:none; width:100%; height:100%; max-height:none; border-radius:0;
+      padding-top:env(safe-area-inset-top); padding-bottom:env(safe-area-inset-bottom);
+    }
+  }
+
+  .modal-header{ padding:18px 20px 14px; border-bottom:1px solid var(--border-light); flex:none; }
+  .modal-header-row{ display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+  .modal-header-left{ display:flex; align-items:center; gap:10px; }
+  .modal-back, .modal-close{
+    width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    color:var(--text-dark); flex:none;
+  }
+  .modal-back:hover, .modal-close:hover{ background:var(--cream); }
+  .modal-back svg, .modal-close svg{ width:18px; height:18px; }
+  .modal-back[hidden]{ display:none; }
+  .modal-title{ font-family:var(--font-display); font-size:20px; letter-spacing:.01em; text-transform:uppercase; }
+  .modal-progress-track{ height:4px; background:var(--border-light); border-radius:999px; overflow:hidden; }
+  .modal-progress-fill{ height:100%; width:25%; background:var(--copper); border-radius:999px; transition:width .3s ease; }
+
+  .modal-body{ padding:20px; overflow-y:auto; flex:1; }
+
+  .modal-summary{
+    display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; padding:12px 14px;
+    background:var(--cream); border-radius:10px; font-size:12px; color:var(--text-dark);
+  }
+  .modal-summary span{ display:inline-flex; align-items:center; gap:5px; font-weight:600; }
+  .modal-summary span b{ font-weight:400; color:var(--gray-warm); }
+  .modal-summary.is-empty{ display:none; }
+
+  .pick-list{ display:flex; flex-direction:column; gap:10px; }
+  .pick-card{
+    display:flex; align-items:center; gap:14px; width:100%; padding:12px; border:1px solid var(--border-light);
+    border-radius:10px; text-align:left; transition:border-color .2s ease, background-color .2s ease;
+  }
+  .pick-card:hover{ border-color:var(--copper); }
+  .pick-card.is-selected{ border-color:var(--copper); background:var(--cream); }
+  .pick-card img{ width:56px; height:56px; border-radius:8px; object-fit:cover; flex:none; }
+  .pick-card-info{ flex:1; min-width:0; }
+  .pick-card-name{ font-size:15px; font-weight:700; margin-bottom:2px; }
+  .pick-card-meta{ font-size:12px; color:var(--gray-warm); }
+  .pick-card-check{ flex:none; width:20px; height:20px; color:var(--copper); opacity:0; }
+  .pick-card.is-selected .pick-card-check{ opacity:1; }
+  .pick-card-check svg{ width:100%; height:100%; }
+
+  .wizard-toggle{
+    display:flex; align-items:center; justify-content:space-between; gap:10px; width:100%; padding:14px 16px;
+    background:var(--cream); border:1px dashed var(--border-light); border-radius:10px; margin-bottom:14px;
+    font-size:13px; font-weight:600; text-align:left; color:var(--text-dark); transition:border-color .2s ease;
+  }
+  .wizard-toggle:hover{ border-color:var(--copper); }
+  .wizard-toggle span.arrow-link{ color:var(--copper-hover); font-weight:700; white-space:nowrap; }
+  .wizard-box{ background:var(--cream); border-radius:10px; padding:16px; margin-bottom:14px; }
+  .wizard-question{ font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--gray-warm); margin-bottom:10px; }
+  .wizard-question:not(:first-child){ margin-top:18px; }
+  .wizard-options{ display:flex; flex-wrap:wrap; gap:8px; }
+  .choice-chip{
+    padding:10px 16px; border:1px solid var(--border-light); border-radius:999px; font-size:13px; font-weight:600;
+    background:var(--white-warm); transition:border-color .2s ease, background-color .2s ease, color .2s ease;
+  }
+  .choice-chip:hover{ border-color:var(--copper); }
+  .choice-chip.is-selected{ background:var(--copper); border-color:var(--copper); color:var(--text-dark); }
+  .wizard-submit-row{ margin-top:18px; }
+  .wizard-submit-row .btn{ width:100%; height:46px; }
+  .wizard-results-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+  .wizard-results-head p{ font-size:13px; font-weight:700; color:var(--text-dark); }
+  .wizard-reset-link{ font-size:12px; font-weight:700; color:var(--copper-hover); text-decoration:underline; }
+
+  .cal-nav{ display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; }
+  .cal-nav-label{ font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:.03em; }
+  .cal-nav-btn{ width:32px; height:32px; border-radius:50%; border:1px solid var(--border-light); display:flex; align-items:center; justify-content:center; }
+  .cal-nav-btn svg{ width:14px; height:14px; }
+  .cal-nav-btn:disabled{ opacity:.3; pointer-events:none; }
+  .cal-grid{ display:grid; grid-template-columns:repeat(7,1fr); gap:6px; margin-bottom:24px; }
+  .cal-dow{ text-align:center; font-size:11px; color:var(--gray-warm); font-weight:600; text-transform:uppercase; }
+  .cal-day{
+    aspect-ratio:1; display:flex; align-items:center; justify-content:center; border-radius:8px; font-size:13px;
+    border:1px solid transparent;
+  }
+  .cal-day:not(:disabled):hover{ border-color:var(--copper); }
+  .cal-day:disabled{ color:var(--border-light); pointer-events:none; }
+  .cal-day.is-selected{ background:var(--copper); color:var(--text-dark); font-weight:700; }
+  .cal-day.is-empty{ visibility:hidden; }
+
+  .time-label{ font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--gray-warm); margin-bottom:10px; }
+  .time-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+  @media (min-width:480px){ .time-grid{ grid-template-columns:repeat(4,1fr); } }
+  .time-slot{ height:42px; border:1px solid var(--border-light); border-radius:8px; font-size:13px; font-weight:600; }
+  .time-slot:hover{ border-color:var(--copper); }
+  .time-slot.is-selected{ background:var(--copper); border-color:var(--copper); color:var(--text-dark); }
+
+  .form-field{ margin-bottom:14px; }
+  .form-field label{ display:block; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--gray-warm); margin-bottom:6px; }
+  .form-field input, .form-field textarea{
+    width:100%; min-height:48px; padding:0 14px; border:1px solid var(--border-light); border-radius:8px;
+    font:inherit; font-size:15px; background:#fff;
+  }
+  .form-field textarea{ min-height:80px; padding:12px 14px; resize:vertical; }
+  .form-field input:focus, .form-field textarea:focus{ border-color:var(--copper); outline:none; }
+  .form-field.has-error input{ border-color:#C0392B; }
+  .form-error{ font-size:12px; color:#C0392B; margin-top:4px; display:none; }
+  .form-field.has-error .form-error{ display:block; }
+
+  .confirm-icon{ width:56px; height:56px; border-radius:50%; background:var(--copper); color:var(--text-dark); display:flex; align-items:center; justify-content:center; margin:0 auto 18px; }
+  .confirm-icon svg{ width:26px; height:26px; }
+  .confirm-title{ font-family:var(--font-display); font-size:26px; text-align:center; text-transform:uppercase; letter-spacing:.01em; margin-bottom:10px; }
+  .confirm-text{ font-size:14px; color:var(--gray-warm); text-align:center; line-height:1.55; max-width:380px; margin:0 auto 22px; }
+  .confirm-details{ background:var(--cream); border-radius:10px; padding:16px; display:flex; flex-direction:column; gap:10px; margin-bottom:8px; }
+  .confirm-row{ display:flex; align-items:center; justify-content:space-between; font-size:13px; }
+  .confirm-row span:first-child{ color:var(--gray-warm); }
+  .confirm-row span:last-child{ font-weight:700; text-align:right; }
+  .confirm-status{ display:inline-flex; align-self:center; margin-top:8px; padding:6px 14px; border-radius:999px; background:#F5DFC7; color:#8A5A20; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; }
+
+  .modal-footer{ padding:16px 20px; border-top:1px solid var(--border-light); flex:none; }
+  .modal-footer .btn{ width:100%; height:52px; font-size:14px; }
+  .modal-footer .btn:disabled{ opacity:.45; pointer-events:none; }
+  .modal-footer-secondary{ margin-top:10px; text-align:center; }
+  .modal-footer-secondary button{ font-size:13px; font-weight:600; color:var(--gray-warm); text-decoration:underline; }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="container header-inner">
+    <a href="#inicio" class="logo">
+      <span class="mark-main">DISTRITO</span>
+      <span class="mark-sub">BARBERÍA</span>
+    </a>
+    <ul class="main-nav">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#equipo">Barberos</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#ubicacion">Ubicación</a></li>
+      <li><a href="#faq">Preguntas</a></li>
+    </ul>
+    <div class="header-right">
+      <div class="region-toggle" id="regionToggle" role="group" aria-label="Selecciona tu región">
+        <button type="button" class="region-toggle-btn is-active" data-region="mx" aria-pressed="true">🇲🇽 MX</button>
+        <button type="button" class="region-toggle-btn" data-region="es" aria-pressed="false">🇪🇸 ES</button>
+      </div>
+      <button class="btn btn-primary btn-header" data-open-booking>Reservar cita</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileNav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobileNav">
+  <ul>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#equipo">Barberos</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#ubicacion">Ubicación</a></li>
+    <li><a href="#faq">Preguntas</a></li>
+  </ul>
+  <div class="region-toggle region-toggle-mobile" id="regionToggleMobile" role="group" aria-label="Selecciona tu región">
+    <button type="button" class="region-toggle-btn is-active" data-region="mx" aria-pressed="true">🇲🇽 México</button>
+    <button type="button" class="region-toggle-btn" data-region="es" aria-pressed="false">🇪🇸 España</button>
+  </div>
+  <button class="btn btn-primary" data-open-booking>Reservar cita</button>
+</nav>
+
+
+<main>
+
+  <!-- ============ 1. PORTADA ============ -->
+  <section class="hero" id="inicio">
+    <div class="hero-photo">
+      <img src="https://images.unsplash.com/photo-1672642150228-3fcd5826ec26?auto=format&fit=crop&w=2200&q=75" alt="Interior de Distrito Barbería con ambiente cálido y profesional">
+    </div>
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <p class="eyebrow">Barbería de barrio</p>
+        <h1 class="hero-title">TÉCNICA<br>Y ESTILO<br>EN CADA CORTE</h1>
+        <p class="hero-text">Cortes modernos, barbas impecables y un ambiente pensado para verte y sentirte bien. Reserva en menos de un minuto.</p>
+        <button class="btn btn-primary" data-open-booking>Reservar cita <span class="arrow">→</span></button>
+      </div>
+
+      <div class="booking-card">
+        <h3>Reserva tu cita</h3>
+        <p>Elige tu servicio y barbero</p>
+        <div class="booking-fields">
+          <button class="field-row" id="heroFieldServicio" data-open-booking data-step="servicio">
+            <span class="field-icon"></span>
+            <span class="field-text">
+              <span class="field-label">Servicio</span>
+              <span class="field-value" id="heroValueServicio">Selecciona un servicio</span>
+            </span>
+            <span class="field-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></span>
+          </button>
+          <button class="field-row" id="heroFieldBarbero" data-open-booking data-step="barbero">
+            <span class="field-icon"></span>
+            <span class="field-text">
+              <span class="field-label">Barbero</span>
+              <span class="field-value" id="heroValueBarbero">Selecciona un barbero</span>
+            </span>
+            <span class="field-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></span>
+          </button>
+        </div>
+        <button class="btn btn-primary btn-continue" data-open-booking>VER DISPONIBILIDAD →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. BENEFICIOS ============ -->
+  <section class="benefits" aria-label="Beneficios">
+    <div class="container benefits-grid">
+      <div class="benefit">
+        <span class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12.5 3.5h5a2 2 0 0 1 2 2v5a2 2 0 0 1-.6 1.4l-8 8a2 2 0 0 1-2.8 0l-5-5a2 2 0 0 1 0-2.8l8-8a2 2 0 0 1 1.4-.6Z"/><circle cx="16" cy="8" r="1.3" fill="currentColor" stroke="none"/></svg></span>
+        <div><h4>Técnica profesional</h4><p>Barberos formados y en constante actualización.</p></div>
+      </div>
+      <div class="benefit">
+        <span class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>
+        <div><h4>Puntualidad</h4><p>Tu cita comienza a la hora reservada.</p></div>
+      </div>
+      <div class="benefit">
+        <span class="benefit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.35-9.5-8.5C.7 8.6 2.4 5 6 5c2 0 3.3 1 4 2 .7-1 2-2 4-2 3.6 0 5.3 3.6 3.5 7.5C19 16.65 12 21 12 21Z"/></svg></span>
+        <div><h4>Ambiente premium</h4><p>Un espacio pensado para que te relajes.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. SERVICIOS Y PRECIOS ============ -->
+  <section class="services" id="servicios">
+    <div class="container">
+      <div class="section-head on-dark">
+        <p class="eyebrow">Nuestros servicios</p>
+        <h2>ELIGE EL SERVICIO<br>QUE DEFINE TU ESTILO</h2>
+      </div>
+      <div class="service-grid" id="serviceGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ 4. PROMOCIÓN ============ -->
+  <section class="promo">
+    <div class="container">
+      <div>
+        <span class="promo-eyebrow">Primera visita</span>
+        <p class="promo-title">15% de descuento</p>
+      </div>
+      <button class="btn btn-primary promo-btn" data-open-booking data-promo="1">Aprovechar promoción →</button>
+    </div>
+  </section>
+
+  <!-- ============ 5. EQUIPO DE BARBEROS ============ -->
+  <section class="team" id="equipo">
+    <div class="container">
+      <div class="section-head on-light">
+        <p class="eyebrow">Nuestro equipo</p>
+        <h2>BARBEROS QUE CONOCEN<br>SU OFICIO</h2>
+      </div>
+      <div class="team-grid" id="teamGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ 6. GALERÍA Y TESTIMONIOS ============ -->
+  <section class="showcase" id="galeria">
+    <div class="container showcase-cols">
+      <div>
+        <p class="subhead">Galería</p>
+        <div class="gallery-grid" id="galleryGrid"></div>
+      </div>
+      <div>
+        <p class="subhead">Lo que dicen nuestros clientes</p>
+        <div class="testimonial-list" id="testimonialList"></div>
+        <button class="btn btn-ghost" data-open-booking style="margin-top:16px; width:100%; height:48px;">Reservar mi cita</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7. UBICACIÓN Y CONTACTO ============ -->
+  <section class="location" id="ubicacion">
+    <div class="container">
+      <div class="section-head on-dark">
+        <p class="eyebrow">Visítanos</p>
+        <h2>ENCUÉNTRANOS</h2>
+      </div>
+      <div class="location-grid">
+        <div class="location-map">Espacio para mapa</div>
+        <div class="location-details">
+          <div class="location-row">
+            <span class="location-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.35-9.5-8.5C.7 8.6 2.4 5 6 5c2 0 3.3 1 4 2 .7-1 2-2 4-2 3.6 0 5.3 3.6 3.5 7.5C19 16.65 12 21 12 21Z"/></svg></span>
+            <div>
+              <p class="location-row-title" style="color:var(--white-warm);">Dirección</p>
+              <p class="location-row-text" id="locAddressText">Av. Insurgentes 245, Col. Centro, Chihuahua, Chih.</p>
+            </div>
+          </div>
+          <div class="location-row">
+            <span class="location-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span>
+            <div>
+              <p class="location-row-title" style="color:var(--white-warm);">Horarios</p>
+              <p class="location-row-text">Lunes a sábado: 10:00 a.m.–8:00 p.m.<br>Domingo: 11:00 a.m.–4:00 p.m.</p>
+            </div>
+          </div>
+          <div class="location-row">
+            <span class="location-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5c0-.6.4-1 1-1h3l1.5 4-2 1.5c1 2.2 2.8 4 5 5l1.5-2 4 1.5v3c0 .6-.4 1-1 1C9.6 20 4 14.4 4 5Z"/></svg></span>
+            <div>
+              <p class="location-row-title" style="color:var(--white-warm);">Contacto</p>
+              <p class="location-row-text" id="locContactText">Tel. 614 123 4567 · WhatsApp 614 987 6543<br>Instagram @distritobarberia</p>
+            </div>
+          </div>
+          <div class="location-row">
+            <span class="location-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="7" width="19" height="12" rx="2"/><path d="M8 7V5.5A1.5 1.5 0 0 1 9.5 4h5A1.5 1.5 0 0 1 16 5.5V7"/></svg></span>
+            <div>
+              <p class="location-row-title" style="color:var(--white-warm);">Estacionamiento</p>
+              <p class="location-row-text">Contamos con estacionamiento propio gratuito para clientes.</p>
+            </div>
+          </div>
+          <div class="location-actions">
+            <a class="btn btn-ghost-dark" href="#" target="_blank" rel="noopener">Cómo llegar</a>
+            <a class="btn btn-primary" href="#" target="_blank" rel="noopener">Enviar mensaje</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8. PREGUNTAS FRECUENTES ============ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-head on-light" style="text-align:center;">
+        <p class="eyebrow" style="justify-content:center;">Antes de tu cita</p>
+        <h2>ANTES DE TU CITA</h2>
+      </div>
+      <div class="faq-list" id="faqList"></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ 9. FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="mark-main">DISTRITO</span>
+        <span class="mark-sub">BARBERÍA</span>
+        <p id="footerTagline">Barbería de barrio con técnica, carácter y estilo. Cortes modernos y barbas impecables desde Chihuahua.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5c0-.6.4-1 1-1h3l1.5 4-2 1.5c1 2.2 2.8 4 5 5l1.5-2 4 1.5v3c0 .6-.4 1-1 1C9.6 20 4 14.4 4 5Z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Navegación</h5>
+        <ul>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#equipo">Barberos</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#faq">Preguntas</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Servicios</h5>
+        <ul id="footerServices"></ul>
+      </div>
+      <div class="footer-col">
+        <h5>Horarios y ubicación</h5>
+        <ul>
+          <li><p>Lun–Sáb: 10:00–20:00</p></li>
+          <li><p>Dom: 11:00–16:00</p></li>
+          <li><p id="footerAddress">Av. Insurgentes 245, Chihuahua</p></li>
+          <li><p id="footerPhone">Tel. 614 123 4567</p></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        <a href="#">Aviso de privacidad</a>
+        <span>© 2026 Distrito Barbería. Todos los derechos reservados.</span>
+      </div>
+      <button class="btn btn-ghost-dark" data-open-booking style="height:40px; padding:0 18px; font-size:12px;">Reservar cita</button>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ CTA FIJA MÓVIL ============ -->
+<div class="mobile-sticky-cta">
+  <button class="btn btn-primary" data-open-booking>Reservar cita</button>
+</div>
+
+<!-- ============ MODAL DE RESERVACIÓN (único sistema) ============ -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="booking-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-header">
+      <div class="modal-header-row">
+        <div class="modal-header-left">
+          <button class="modal-back" id="modalBack" hidden aria-label="Volver">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>
+          </button>
+          <h3 class="modal-title" id="modalTitle">Reserva tu cita</h3>
+        </div>
+        <button class="modal-close" id="modalClose" aria-label="Cerrar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div class="modal-progress-track"><div class="modal-progress-fill" id="modalProgress"></div></div>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer" id="modalFooter"></div>
+  </div>
+</div>
+
+<!-- ============ MODAL PERFIL DE BARBERO ============ -->
+<div class="modal-backdrop" id="profileModalBackdrop">
+  <div class="booking-modal profile-modal" role="dialog" aria-modal="true" aria-labelledby="profileModalTitle">
+    <div class="modal-header">
+      <div class="modal-header-row">
+        <div class="modal-header-left">
+          <h3 class="modal-title" id="profileModalTitle">Perfil del barbero</h3>
+        </div>
+        <button class="modal-close" id="profileModalClose" aria-label="Cerrar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="modal-body" id="profileModalBody"></div>
+    <div class="modal-footer" id="profileModalFooter"></div>
+  </div>
+</div>
+
+<!-- ============ LIGHTBOX GALERÍA ============ -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button class="lightbox-prev" id="lightboxPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
+  <button class="lightbox-next" id="lightboxNext" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
+  <div class="lightbox-img-wrap">
+    <img id="lightboxImg" src="" alt="">
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============================================================
+     CONFIGURACIÓN CENTRAL — única fuente de verdad para todo el sitio
+     ============================================================ */
+  var ICONS = {
+    clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>',
+    calendar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/></svg>',
+    scissors: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12.5 3.5h5a2 2 0 0 1 2 2v5a2 2 0 0 1-.6 1.4l-8 8a2 2 0 0 1-2.8 0l-5-5a2 2 0 0 1 0-2.8l8-8a2 2 0 0 1 1.4-.6Z"/><circle cx="16" cy="8" r="1.3" fill="currentColor" stroke="none"/></svg>',
+    barber: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 20c1-4 4-6 7.5-6s6.5 2 7.5 6"/></svg>',
+    check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12.5 9.5 17 19 7"/></svg>',
+    badge: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="5"/><path d="M8.3 12.5 6.5 21l5.5-2.6 5.5 2.6-1.8-8.5"/></svg>',
+    star: '<svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2.5l2.9 6.2 6.8.7-5 4.7 1.4 6.7L12 17.5l-6.1 3.3 1.4-6.7-5-4.7 6.8-.7L12 2.5z"/></svg>'
+  };
+  document.getElementById('heroFieldServicio').querySelector('.field-icon').innerHTML = ICONS.scissors;
+  document.getElementById('heroFieldBarbero').querySelector('.field-icon').innerHTML = ICONS.barber;
+
+  var SERVICES = [
+    { id:'clasico',   name:'Corte clásico',    price:{ mx:250, es:18 }, duration:'40 min', img:'https://images.pexels.com/photos/7697275/pexels-photo-7697275.jpeg?auto=compress&cs=tinysrgb&w=700', alt:'Barbero realizando un corte clásico' },
+    { id:'degradado', name:'Degradado',        price:{ mx:280, es:20 }, duration:'50 min', img:'https://images.pexels.com/photos/7697225/pexels-photo-7697225.jpeg?auto=compress&cs=tinysrgb&w=700', alt:'Barbero haciendo un degradado con máquina' },
+    { id:'barba',     name:'Arreglo de barba', price:{ mx:180, es:13 }, duration:'30 min', img:'https://images.pexels.com/photos/7697287/pexels-photo-7697287.jpeg?auto=compress&cs=tinysrgb&w=700', alt:'Barbero arreglando la barba de un cliente' },
+    { id:'corteybarba', name:'Corte y barba',  price:{ mx:400, es:30 }, duration:'70 min', img:'https://images.unsplash.com/photo-1634480257305-7f4ca3582e6a?auto=format&fit=crop&w=700&q=75', alt:'Barbero terminando un corte y barba completo' },
+    { id:'infantil',  name:'Corte infantil',   price:{ mx:220, es:15 }, duration:'35 min', img:'https://images.unsplash.com/photo-1521490878864-a50e9fcb5718?auto=format&fit=crop&w=700&q=75', alt:'Barbero cortando el cabello de un niño' }
+  ];
+
+  var BARBERS = [
+    { id:'mateo',    name:'Mateo Ruiz',    specialty:'Cortes clásicos y barba',       schedule:'Lun–Sáb · 9:00–19:00',  services:['clasico','barba','corteybarba'], img:'https://images.unsplash.com/photo-1649433658557-54cf58577c68?auto=format&fit=crop&w=500&q=75', alt:'Retrato de Mateo Ruiz, barbero',
+      yearsExp:9, rating:4.9, reviewCount:132, styleTags:['clasico'],
+      bio:'Formado en barbería tradicional, Mateo se especializa en cortes clásicos a navaja y arreglos de barba con acabado impecable. Más de nueve años perfeccionando la precisión y el detalle en cada silla.',
+      portfolio:[
+        'https://images.pexels.com/photos/7697275/pexels-photo-7697275.jpeg?auto=compress&cs=tinysrgb&w=700',
+        'https://images.pexels.com/photos/7697287/pexels-photo-7697287.jpeg?auto=compress&cs=tinysrgb&w=700',
+        'https://images.unsplash.com/photo-1634480257305-7f4ca3582e6a?auto=format&fit=crop&w=700&q=75',
+        'https://images.pexels.com/photos/7697275/pexels-photo-7697275.jpeg?auto=compress&cs=tinysrgb&w=1200'
+      ] },
+    { id:'diego',    name:'Diego Herrera', specialty:'Degradados y estilos modernos', schedule:'Lun–Sáb · 10:00–20:00', services:['degradado','corteybarba'],       img:'https://images.unsplash.com/photo-1642795730901-84f82e088e17?auto=format&fit=crop&w=500&q=75', alt:'Retrato de Diego Herrera, barbero',
+      yearsExp:6, rating:4.8, reviewCount:98, styleTags:['moderno'],
+      bio:'Diego se mantiene siempre a la vanguardia: degradados nítidos, diseños y estilos modernos inspirados en tendencia. Seis años construyendo una clientela que busca un corte con actitud.',
+      portfolio:[
+        'https://images.pexels.com/photos/7697225/pexels-photo-7697225.jpeg?auto=compress&cs=tinysrgb&w=700',
+        'https://images.unsplash.com/photo-1634480257305-7f4ca3582e6a?auto=format&fit=crop&w=700&q=75',
+        'https://images.pexels.com/photos/7697279/pexels-photo-7697279.jpeg?auto=compress&cs=tinysrgb&w=1200',
+        'https://images.pexels.com/photos/7697225/pexels-photo-7697225.jpeg?auto=compress&cs=tinysrgb&w=1200'
+      ] },
+    { id:'santiago', name:'Santiago Cruz', specialty:'Cortes versátiles e infantiles',schedule:'Lun–Sáb · 9:00–19:00',  services:['clasico','infantil','degradado'], img:'https://images.unsplash.com/photo-1758598497219-45e77afc5b53?auto=format&fit=crop&w=500&q=75', alt:'Retrato de Santiago Cruz, barbero',
+      yearsExp:4, rating:4.9, reviewCount:76, styleTags:['infantil','moderno'],
+      bio:'Paciente y versátil, Santiago es el favorito de las familias: cortes infantiles sin dramas y degradados prolijos para cualquier edad. Cuatro años combinando rapidez con un trato cercano.',
+      portfolio:[
+        'https://images.unsplash.com/photo-1521490878864-a50e9fcb5718?auto=format&fit=crop&w=700&q=75',
+        'https://images.pexels.com/photos/7697275/pexels-photo-7697275.jpeg?auto=compress&cs=tinysrgb&w=700',
+        'https://images.pexels.com/photos/7697225/pexels-photo-7697225.jpeg?auto=compress&cs=tinysrgb&w=700',
+        'https://images.unsplash.com/photo-1672642150228-3fcd5826ec26?auto=format&fit=crop&w=1400&q=75'
+      ] }
+  ];
+
+  var GALLERY = [
+    { img:'https://images.unsplash.com/photo-1672642150228-3fcd5826ec26?auto=format&fit=crop&w=1400&q=75', alt:'Interior general de Distrito Barbería', barberoId:'santiago' },
+    { img:'https://images.pexels.com/photos/7697275/pexels-photo-7697275.jpeg?auto=compress&cs=tinysrgb&w=1200', alt:'Barbero trabajando en un corte de precisión', barberoId:'mateo' },
+    { img:'https://images.pexels.com/photos/7697279/pexels-photo-7697279.jpeg?auto=compress&cs=tinysrgb&w=1200', alt:'Herramientas profesionales de barbería', barberoId:'diego' },
+    { img:'https://images.pexels.com/photos/7697225/pexels-photo-7697225.jpeg?auto=compress&cs=tinysrgb&w=1200', alt:'Corte degradado terminado', barberoId:'diego' },
+    { img:'https://images.pexels.com/photos/7697287/pexels-photo-7697287.jpeg?auto=compress&cs=tinysrgb&w=1200', alt:'Arreglo de barba con navaja', barberoId:'mateo' }
+  ];
+
+  /* Testimonios ficticios de demostración — reemplazar por opiniones reales de cada barbería */
+  var TESTIMONIALS = [
+    { name:'Carlos M.', service:'Corte y barba', rating:5, quote:'Excelente atención, precisión y ambiente. Salí justo con el estilo que buscaba.', img:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=160&q=75', barberoId:'mateo' },
+    { name:'Andrés R.', service:'Degradado', rating:5, quote:'Profesionales de verdad. El degradado quedó increíble, volveré sin duda.', img:'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=160&q=75', barberoId:'diego' },
+    { name:'Luis F.', service:'Corte clásico', rating:5, quote:'El mejor lugar para un corte clásico. Ambiente único y atención de primera.', img:'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=160&q=75', barberoId:'santiago' }
+  ];
+
+  var FAQS = [
+    { q:'¿Puedo elegir a mi barbero?', a:'Sí, el cliente puede seleccionar al barbero disponible durante la reservación.' },
+    { q:'¿Qué pasa si llego tarde?', a:'Se recomienda llegar de cinco a diez minutos antes de tu cita.' },
+    { q:'¿Cómo puedo cancelar o cambiar mi cita?', a:'La cita podrá modificarse desde el mensaje de confirmación en una versión futura.' },
+    { q:'¿Necesito pagar anticipo?', a:'No se necesita anticipo.' },
+    { q:'¿Aceptan tarjeta?', a:'El pago se realiza directamente en la barbería.' },
+    { q:'¿Atienden sin cita?', a:'La atención sin cita depende de la disponibilidad.' }
+  ];
+
+  function byId(list, id){ for(var i=0;i<list.length;i++){ if(list[i].id===id) return list[i]; } return null; }
+
+  /* ============================================================
+     REGIÓN / IDIOMA — todo en memoria, México por defecto al cargar
+     ============================================================ */
+  var LOCALES = {
+    mx: {
+      label:'México',
+      currency:'MXN',
+      formatPrice: function(n){ return '$' + n + ' MXN'; },
+      address:'Av. Insurgentes 245, Col. Centro, Chihuahua, Chih.',
+      addressShort:'Av. Insurgentes 245, Chihuahua',
+      phone:'614 123 4567',
+      whatsapp:'614 987 6543',
+      instagram:'@distritobarberia',
+      cityLine:'desde Chihuahua'
+    },
+    es: {
+      label:'España',
+      currency:'€',
+      formatPrice: function(n){ return n + ' €'; },
+      address:'Calle Gran Vía 32, Centro, Madrid, España',
+      addressShort:'Calle Gran Vía 32, Madrid',
+      phone:'912 345 678',
+      whatsapp:'611 223 344',
+      instagram:'@distritobarberia.es',
+      cityLine:'desde Madrid'
+    }
+  };
+  var currentRegion = 'mx';
+  var currentProfileBarberId = null;
+
+  function money(n){ return LOCALES[currentRegion].formatPrice(n); }
+
+  /* ============================================================
+     HEADER + NAV MÓVIL
+     ============================================================ */
+  var header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', function(){
+    header.classList.toggle('is-solid', window.scrollY > 40);
+  }, {passive:true});
+
+  var menuToggle = document.getElementById('menuToggle');
+  var mobileNav = document.getElementById('mobileNav');
+  function closeMobileNav(){ mobileNav.classList.remove('is-open'); menuToggle.setAttribute('aria-expanded','false'); }
+  function openMobileNav(){ mobileNav.classList.add('is-open'); menuToggle.setAttribute('aria-expanded','true'); }
+  menuToggle.addEventListener('click', function(){
+    if(mobileNav.classList.contains('is-open')) closeMobileNav(); else openMobileNav();
+  });
+  mobileNav.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMobileNav); });
+
+  /* ============================================================
+     RENDER: SERVICIOS
+     ============================================================ */
+  var serviceGrid = document.getElementById('serviceGrid');
+  function renderServices(){
+    serviceGrid.innerHTML = '';
+    SERVICES.forEach(function(s){
+      var card = document.createElement('article');
+      card.className = 'service-card';
+      card.innerHTML =
+        '<div class="service-card-photo"><img src="'+s.img+'" alt="'+s.alt+'" loading="lazy"></div>' +
+        '<div class="service-card-body">' +
+          '<p class="service-card-name">'+s.name+'</p>' +
+          '<div class="service-card-meta">' +
+            '<span class="service-card-price">'+money(s.price[currentRegion])+'</span>' +
+            '<span class="service-card-duration">'+ICONS.clock+s.duration+'</span>' +
+          '</div>' +
+          '<button class="btn btn-primary" data-open-booking data-servicio="'+s.id+'">Reservar</button>' +
+        '</div>';
+      serviceGrid.appendChild(card);
+    });
+  }
+  renderServices();
+
+  var footerServices = document.getElementById('footerServices');
+  SERVICES.forEach(function(s){
+    var li = document.createElement('li');
+    li.innerHTML = '<a href="#servicios">'+s.name+'</a>';
+    footerServices.appendChild(li);
+  });
+
+  /* ============================================================
+     RENDER: EQUIPO
+     ============================================================ */
+  var teamGrid = document.getElementById('teamGrid');
+  function renderTeam(){
+    teamGrid.innerHTML = '';
+    BARBERS.forEach(function(b){
+      var serviceNames = b.services.map(function(id){ var s = byId(SERVICES,id); return s ? s.name : ''; }).join(', ');
+      var card = document.createElement('article');
+      card.className = 'team-card';
+      card.innerHTML =
+        '<div class="team-card-photo"><img src="'+b.img+'" alt="'+b.alt+'" loading="lazy"></div>' +
+        '<div class="team-card-body">' +
+          '<p class="team-card-name">'+b.name+'</p>' +
+          '<p class="team-card-specialty">'+b.specialty+'</p>' +
+          '<div class="team-card-row"><span class="rating-inline">'+ICONS.star+' '+b.rating+'</span><span class="rating-count">· '+b.reviewCount+' reseñas</span></div>' +
+          '<div class="team-card-row">'+ICONS.badge+' '+b.yearsExp+' años de experiencia</div>' +
+          '<div class="team-card-row">'+ICONS.clock+' '+b.schedule+'</div>' +
+          '<div class="team-card-services"><b>Servicios que realiza</b>'+serviceNames+'</div>' +
+          '<div class="team-card-actions">' +
+            '<button class="btn btn-ghost" data-open-profile="'+b.id+'">Ver perfil</button>' +
+            '<button class="btn btn-primary" data-open-booking data-barbero="'+b.id+'">Reservar</button>' +
+          '</div>' +
+        '</div>';
+      teamGrid.appendChild(card);
+    });
+  }
+  renderTeam();
+
+  /* ============================================================
+     RENDER: TEXTOS DE REGIÓN (dirección, contacto, footer)
+     ============================================================ */
+  function renderLocaleTexts(){
+    var loc = LOCALES[currentRegion];
+    document.getElementById('locAddressText').textContent = loc.address;
+    document.getElementById('locContactText').innerHTML = 'Tel. '+loc.phone+' · WhatsApp '+loc.whatsapp+'<br>Instagram '+loc.instagram;
+    document.getElementById('footerTagline').textContent = 'Barbería de barrio con técnica, carácter y estilo. Cortes modernos y barbas impecables '+loc.cityLine+'.';
+    document.getElementById('footerAddress').textContent = loc.addressShort;
+    document.getElementById('footerPhone').textContent = 'Tel. '+loc.phone;
+  }
+  renderLocaleTexts();
+
+  /* ============================================================
+     RENDER: GALERÍA + LIGHTBOX
+     ============================================================ */
+  var galleryGrid = document.getElementById('galleryGrid');
+  GALLERY.forEach(function(g, idx){
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'gallery-item';
+    btn.setAttribute('aria-label', 'Ampliar fotografía: ' + g.alt);
+    btn.innerHTML = '<img src="'+g.img+'" alt="'+g.alt+'" loading="lazy">';
+    btn.addEventListener('click', function(){ openLightbox(idx); });
+    galleryGrid.appendChild(btn);
+  });
+
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightboxImg');
+  var lightboxCaption = document.getElementById('lightboxCaption');
+  var lightboxIndex = 0;
+  function openLightbox(i){ lightboxIndex = i; renderLightbox(); lightbox.classList.add('is-open'); document.body.classList.add('modal-open'); }
+  function closeLightbox(){ lightbox.classList.remove('is-open'); if(!isBookingOpen()) document.body.classList.remove('modal-open'); }
+  function renderLightbox(){ var item = GALLERY[lightboxIndex]; lightboxImg.src = item.img.replace('w=1200','w=2000').replace('w=1400','w=2000'); lightboxImg.alt = item.alt; lightboxCaption.textContent = item.alt; }
+  function lightboxStep(dir){ lightboxIndex = (lightboxIndex + dir + GALLERY.length) % GALLERY.length; renderLightbox(); }
+  document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+  document.getElementById('lightboxPrev').addEventListener('click', function(){ lightboxStep(-1); });
+  document.getElementById('lightboxNext').addEventListener('click', function(){ lightboxStep(1); });
+  lightbox.addEventListener('click', function(e){ if(e.target===lightbox) closeLightbox(); });
+
+  /* ============================================================
+     RENDER: TESTIMONIOS
+     ============================================================ */
+  var testimonialList = document.getElementById('testimonialList');
+  TESTIMONIALS.forEach(function(t){
+    var stars = '★'.repeat(t.rating) + '☆'.repeat(5 - t.rating);
+    var card = document.createElement('article');
+    card.className = 'testimonial-card';
+    card.innerHTML =
+      '<p class="testimonial-stars" aria-label="'+t.rating+' de 5 estrellas">'+stars+'</p>' +
+      '<p class="testimonial-quote">\u201C'+t.quote+'\u201D</p>' +
+      '<div class="testimonial-author">' +
+        '<img src="'+t.img+'" alt="Fotografía de '+t.name+'" loading="lazy">' +
+        '<div><p class="testimonial-name">'+t.name+'</p><p class="testimonial-service">'+t.service+'</p></div>' +
+      '</div>';
+    testimonialList.appendChild(card);
+  });
+
+  /* ============================================================
+     RENDER: FAQ (acordeón — una pregunta abierta a la vez)
+     ============================================================ */
+  var faqList = document.getElementById('faqList');
+  FAQS.forEach(function(f, i){
+    var item = document.createElement('div');
+    item.className = 'faq-item';
+    item.innerHTML =
+      '<button class="faq-question" aria-expanded="false" id="faqQ'+i+'">'+
+        '<span>'+f.q+'</span>'+
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>'+
+      '</button>'+
+      '<div class="faq-answer"><p>'+f.a+'</p></div>';
+    faqList.appendChild(item);
+    var qBtn = item.querySelector('.faq-question');
+    qBtn.addEventListener('click', function(){
+      var isOpen = item.classList.contains('is-open');
+      faqList.querySelectorAll('.faq-item').forEach(function(el){
+        el.classList.remove('is-open');
+        el.querySelector('.faq-question').setAttribute('aria-expanded','false');
+      });
+      if(!isOpen){ item.classList.add('is-open'); qBtn.setAttribute('aria-expanded','true'); }
+    });
+  });
+
+  /* ============================================================
+     SISTEMA ÚNICO DE RESERVACIÓN
+     ============================================================ */
+  var booking = { servicio:null, barbero:null, fechaObj:null, fechaLabel:null, hora:null, promo:false, step:1,
+                   nombre:'', telefono:'', correo:'', comentario:'' };
+  var calViewDate = new Date();
+  var wizard = { active:false, showResults:false, style:null, priority:null };
+  function resetWizard(){ wizard = { active:false, showResults:false, style:null, priority:null }; }
+
+  var modalBackdrop = document.getElementById('modalBackdrop');
+  var modalTitle = document.getElementById('modalTitle');
+  var modalProgress = document.getElementById('modalProgress');
+  var modalBody = document.getElementById('modalBody');
+  var modalFooter = document.getElementById('modalFooter');
+  var modalBack = document.getElementById('modalBack');
+  var modalClose = document.getElementById('modalClose');
+
+  var profileModalBackdrop = document.getElementById('profileModalBackdrop');
+  var profileModalTitle = document.getElementById('profileModalTitle');
+  var profileModalBody = document.getElementById('profileModalBody');
+  var profileModalFooter = document.getElementById('profileModalFooter');
+  var profileModalClose = document.getElementById('profileModalClose');
+
+  function isBookingOpen(){ return modalBackdrop.classList.contains('is-open'); }
+  function isProfileOpen(){ return profileModalBackdrop.classList.contains('is-open'); }
+
+  /* ---------- Selector de región/idioma ---------- */
+  function syncRegionToggleUI(){
+    document.querySelectorAll('.region-toggle-btn').forEach(function(btn){
+      var active = btn.getAttribute('data-region') === currentRegion;
+      btn.classList.toggle('is-active', active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
+  function setRegion(region){
+    if(!LOCALES[region] || region === currentRegion) return;
+    currentRegion = region;
+    syncRegionToggleUI();
+    renderServices();
+    renderTeam();
+    renderLocaleTexts();
+    if(isProfileOpen() && currentProfileBarberId){
+      var pb = byId(BARBERS, currentProfileBarberId);
+      if(pb) renderBarberProfile(pb);
+    }
+    if(isBookingOpen()) renderModal();
+  }
+  document.querySelectorAll('.region-toggle-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){ setRegion(btn.getAttribute('data-region')); });
+  });
+
+  function nextIncompleteStep(){
+    if(!booking.servicio) return 1;
+    if(!booking.barbero) return 2;
+    if(!booking.fechaObj || !booking.hora) return 3;
+    return 4;
+  }
+
+  function heroSync(){
+    var s = byId(SERVICES, booking.servicio);
+    var b = byId(BARBERS, booking.barbero);
+    var svEl = document.getElementById('heroValueServicio');
+    var brEl = document.getElementById('heroValueBarbero');
+    svEl.textContent = s ? s.name : 'Selecciona un servicio';
+    brEl.textContent = b ? b.name : 'Selecciona un barbero';
+    document.getElementById('heroFieldServicio').classList.toggle('is-filled', !!s);
+    document.getElementById('heroFieldBarbero').classList.toggle('is-filled', !!b);
+  }
+
+  function openBookingModal(opts){
+    opts = opts || {};
+    if(opts.servicio) booking.servicio = opts.servicio;
+    if(opts.barbero) booking.barbero = opts.barbero;
+    if(opts.promo) booking.promo = true;
+    booking.step = opts.step || (booking.step === 5 ? 1 : nextIncompleteStep());
+    if(opts.step) booking.step = opts.step;
+    modalBackdrop.classList.add('is-open');
+    document.body.classList.add('modal-open');
+    renderModal();
+  }
+  function closeBookingModal(){
+    modalBackdrop.classList.remove('is-open');
+    if(!lightbox.classList.contains('is-open')) document.body.classList.remove('modal-open');
+    heroSync();
+  }
+  function resetBooking(){
+    booking = { servicio:null, barbero:null, fechaObj:null, fechaLabel:null, hora:null, promo:false, step:1,
+                nombre:'', telefono:'', correo:'', comentario:'' };
+    resetWizard();
+  }
+
+  /* ---------- Perfil individual de barbero ---------- */
+  function openProfileModal(barberoId){
+    var b = byId(BARBERS, barberoId);
+    if(!b) return;
+    currentProfileBarberId = barberoId;
+    renderBarberProfile(b);
+    profileModalBackdrop.classList.add('is-open');
+    document.body.classList.add('modal-open');
+  }
+  function closeProfileModal(){
+    profileModalBackdrop.classList.remove('is-open');
+    if(!isBookingOpen() && !lightbox.classList.contains('is-open')) document.body.classList.remove('modal-open');
+  }
+  function renderBarberProfile(b){
+    profileModalTitle.textContent = b.name;
+    var stars = '★'.repeat(Math.round(b.rating)) + '☆'.repeat(5 - Math.round(b.rating));
+
+    var servicesHTML = b.services.map(function(id){
+      var s = byId(SERVICES, id);
+      if(!s) return '';
+      return '<div class="profile-service-row"><b>'+s.name+'</b><span>'+money(s.price[currentRegion])+'</span></div>';
+    }).join('');
+
+    var portfolio = b.portfolio || [];
+    var galleryHTML = portfolio.map(function(img){
+      return '<img src="'+img+'" alt="Trabajo de '+b.name+'" loading="lazy">';
+    }).join('');
+
+    var barberTestimonials = TESTIMONIALS.filter(function(t){ return t.barberoId === b.id; });
+    var testimonialsHTML = barberTestimonials.length ? barberTestimonials.map(function(t){
+      var tStars = '★'.repeat(t.rating) + '☆'.repeat(5 - t.rating);
+      return '<article class="testimonial-card">' +
+        '<p class="testimonial-stars" aria-label="'+t.rating+' de 5 estrellas">'+tStars+'</p>' +
+        '<p class="testimonial-quote">\u201C'+t.quote+'\u201D</p>' +
+        '<div class="testimonial-author">' +
+          '<img src="'+t.img+'" alt="Fotografía de '+t.name+'" loading="lazy">' +
+          '<div><p class="testimonial-name">'+t.name+'</p><p class="testimonial-service">'+t.service+'</p></div>' +
+        '</div></article>';
+    }).join('') : '<p class="profile-no-reviews">Aún no hay testimonios para este barbero.</p>';
+
+    profileModalBody.innerHTML =
+      '<div class="profile-photo"><img src="'+b.img+'" alt="'+b.alt+'" loading="lazy"></div>' +
+      '<p class="profile-name">'+b.name+'</p>' +
+      '<p class="profile-specialty">'+b.specialty+'</p>' +
+      '<div class="profile-meta-row">' +
+        '<span class="rating-inline">'+ICONS.star+' '+b.rating+'</span><span>· '+b.reviewCount+' reseñas</span>' +
+        '<span>'+ICONS.badge+' '+b.yearsExp+' años de experiencia</span>' +
+        '<span>'+ICONS.clock+' '+b.schedule+'</span>' +
+      '</div>' +
+      '<p class="profile-bio">'+b.bio+'</p>' +
+      '<p class="profile-section-title">Servicios</p>' +
+      '<div class="profile-services">'+servicesHTML+'</div>' +
+      '<p class="profile-section-title">Trabajos</p>' +
+      '<div class="profile-gallery-grid">'+galleryHTML+'</div>' +
+      '<p class="profile-section-title">Testimonios</p>' +
+      '<div class="profile-testimonials">'+testimonialsHTML+'</div>';
+
+    profileModalFooter.innerHTML = '<button class="btn btn-primary" id="btnReservarConBarbero">Reservar con '+b.name.split(' ')[0]+'</button>';
+    document.getElementById('btnReservarConBarbero').addEventListener('click', function(){
+      closeProfileModal();
+      openBookingModal({ barbero:b.id });
+    });
+  }
+
+  document.addEventListener('click', function(e){
+    var profileTrigger = e.target.closest('[data-open-profile]');
+    if(profileTrigger){
+      e.preventDefault();
+      openProfileModal(profileTrigger.dataset.openProfile);
+      return;
+    }
+    var trigger = e.target.closest('[data-open-booking]');
+    if(!trigger) return;
+    e.preventDefault();
+    var opts = {};
+    if(trigger.dataset.servicio) opts.servicio = trigger.dataset.servicio;
+    if(trigger.dataset.barbero) opts.barbero = trigger.dataset.barbero;
+    if(trigger.dataset.promo) opts.promo = true;
+    if(trigger.dataset.step === 'servicio') opts.step = 1;
+    if(trigger.dataset.step === 'barbero') opts.step = 2;
+    openBookingModal(opts);
+  });
+  modalClose.addEventListener('click', closeBookingModal);
+  modalBackdrop.addEventListener('click', function(e){ if(e.target === modalBackdrop) closeBookingModal(); });
+  profileModalClose.addEventListener('click', closeProfileModal);
+  profileModalBackdrop.addEventListener('click', function(e){ if(e.target === profileModalBackdrop) closeProfileModal(); });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){
+      if(isBookingOpen()) closeBookingModal();
+      if(isProfileOpen()) closeProfileModal();
+      if(lightbox.classList.contains('is-open')) closeLightbox();
+    }
+  });
+
+  function summaryHTML(){
+    var s = byId(SERVICES, booking.servicio);
+    var b = byId(BARBERS, booking.barbero);
+    if(!s && !b && !booking.fechaLabel) return '<div class="modal-summary is-empty"></div>';
+    var parts = [];
+    if(s) parts.push('<span>Servicio <b>· '+s.name+' · '+money(s.price[currentRegion])+'</b></span>');
+    if(b) parts.push('<span>Barbero <b>· '+b.name+'</b></span>');
+    if(booking.fechaLabel) parts.push('<span>Fecha <b>· '+booking.fechaLabel+'</b></span>');
+    if(booking.hora) parts.push('<span>Hora <b>· '+booking.hora+'</b></span>');
+    return '<div class="modal-summary">'+parts.join('')+'</div>';
+  }
+
+  function renderModal(){
+    modalBack.hidden = booking.step === 1;
+    modalProgress.style.width = (Math.min(booking.step,4) / 4 * 100) + '%';
+
+    if(booking.step === 1) renderStepServicio();
+    else if(booking.step === 2) renderStepBarbero();
+    else if(booking.step === 3) renderStepFechaHora();
+    else if(booking.step === 4) renderStepDatos();
+    else if(booking.step === 5) renderConfirmacion();
+  }
+
+  modalBack.addEventListener('click', function(){
+    if(booking.step > 1){ booking.step -= 1; renderModal(); }
+  });
+
+  /* ---------- Paso 1: Servicio ---------- */
+  function renderStepServicio(){
+    resetWizard();
+    modalTitle.textContent = 'Elige tu servicio';
+    var html = summaryHTML() + '<div class="pick-list">';
+    SERVICES.forEach(function(s){
+      var sel = booking.servicio === s.id;
+      html += '<button class="pick-card'+(sel?' is-selected':'')+'" data-pick-servicio="'+s.id+'">'+
+        '<img src="'+s.img+'" alt="">'+
+        '<span class="pick-card-info"><span class="pick-card-name">'+s.name+'</span>'+
+        '<span class="pick-card-meta">'+money(s.price[currentRegion])+' · '+s.duration+'</span></span>'+
+        '<span class="pick-card-check">'+ICONS.check+'</span></button>';
+    });
+    html += '</div>';
+    modalBody.innerHTML = html;
+    modalBody.querySelectorAll('[data-pick-servicio]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        booking.servicio = btn.getAttribute('data-pick-servicio');
+        booking.step = booking.barbero ? (booking.fechaObj && booking.hora ? 4 : 3) : 2;
+        renderModal();
+      });
+    });
+    modalFooter.innerHTML = '';
+  }
+
+  /* ---------- Paso 2: Barbero ---------- */
+  function pickListHTML(list){
+    var html = '<div class="pick-list">';
+    list.forEach(function(b){
+      var sel = booking.barbero === b.id;
+      html += '<button class="pick-card'+(sel?' is-selected':'')+'" data-pick-barbero="'+b.id+'">'+
+        '<img src="'+b.img+'" alt="">'+
+        '<span class="pick-card-info"><span class="pick-card-name">'+b.name+'</span>'+
+        '<span class="pick-card-meta">'+b.specialty+' · '+ICONS.star+' '+b.rating+'</span></span>'+
+        '<span class="pick-card-check">'+ICONS.check+'</span></button>';
+    });
+    html += '</div>';
+    return html;
+  }
+  function bindPickBarbero(){
+    modalBody.querySelectorAll('[data-pick-barbero]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        booking.barbero = btn.getAttribute('data-pick-barbero');
+        booking.step = (booking.fechaObj && booking.hora) ? 4 : 3;
+        renderModal();
+      });
+    });
+  }
+  /* Lógica simple (sin IA/backend) para sugerir barberos compatibles según estilo y prioridad */
+  function suggestBarbers(compatible){
+    var scored = compatible.map(function(b){
+      var score = 0;
+      if(wizard.style && b.styleTags.indexOf(wizard.style) !== -1) score += 3;
+      if(wizard.priority === 'experiencia') score += b.yearsExp * 0.3;
+      if(wizard.priority === 'rapidez'){
+        var startHour = parseInt((b.schedule.split('·')[1]||'').trim(), 10);
+        if(!isNaN(startHour) && startHour <= 9) score += 2;
+      }
+      score += b.rating * 0.2;
+      return { barber:b, score:score };
+    });
+    scored.sort(function(a,c){ return c.score - a.score; });
+    var top = scored.slice(0, 2).map(function(x){ return x.barber; });
+    return top.length ? top : compatible.slice(0,2);
+  }
+
+  function renderStepBarbero(){
+    modalTitle.textContent = 'Elige tu barbero';
+    var compatible = booking.servicio ? BARBERS.filter(function(b){ return b.services.indexOf(booking.servicio) !== -1; }) : BARBERS;
+    if(compatible.length === 0) compatible = BARBERS;
+
+    if(wizard.active){
+      var html = summaryHTML();
+      if(!wizard.showResults){
+        html += '<div class="wizard-box">' +
+          '<p class="wizard-question">¿Qué estilo buscas?</p>' +
+          '<div class="wizard-options">' +
+            '<button class="choice-chip'+(wizard.style==='clasico'?' is-selected':'')+'" data-wiz-style="clasico">Clásico</button>' +
+            '<button class="choice-chip'+(wizard.style==='moderno'?' is-selected':'')+'" data-wiz-style="moderno">Moderno</button>' +
+            '<button class="choice-chip'+(wizard.style==='infantil'?' is-selected':'')+'" data-wiz-style="infantil">Infantil</button>' +
+          '</div>' +
+          '<p class="wizard-question">¿Qué priorizas?</p>' +
+          '<div class="wizard-options">' +
+            '<button class="choice-chip'+(wizard.priority==='rapidez'?' is-selected':'')+'" data-wiz-priority="rapidez">Rapidez</button>' +
+            '<button class="choice-chip'+(wizard.priority==='experiencia'?' is-selected':'')+'" data-wiz-priority="experiencia">Experiencia</button>' +
+          '</div>' +
+          '<div class="wizard-submit-row"><button class="btn btn-primary" id="wizardSubmit"'+((wizard.style&&wizard.priority)?'':' disabled')+'>Ver sugerencias</button></div>' +
+        '</div>';
+        modalBody.innerHTML = html;
+        modalBody.querySelectorAll('[data-wiz-style]').forEach(function(btn){
+          btn.addEventListener('click', function(){ wizard.style = btn.getAttribute('data-wiz-style'); renderStepBarbero(); });
+        });
+        modalBody.querySelectorAll('[data-wiz-priority]').forEach(function(btn){
+          btn.addEventListener('click', function(){ wizard.priority = btn.getAttribute('data-wiz-priority'); renderStepBarbero(); });
+        });
+        var wizSubmit = document.getElementById('wizardSubmit');
+        if(wizSubmit) wizSubmit.addEventListener('click', function(){ wizard.showResults = true; renderStepBarbero(); });
+      } else {
+        var suggested = suggestBarbers(compatible);
+        html += '<div class="wizard-results-head"><p>Te recomendamos</p><a href="#" class="wizard-reset-link" id="wizardReset">Ver todos los barberos</a></div>';
+        html += pickListHTML(suggested);
+        modalBody.innerHTML = html;
+        bindPickBarbero();
+        document.getElementById('wizardReset').addEventListener('click', function(e){ e.preventDefault(); resetWizard(); renderStepBarbero(); });
+      }
+      modalFooter.innerHTML = '';
+      return;
+    }
+
+    var html = summaryHTML() +
+      '<button class="wizard-toggle" id="wizardToggle"><span>No sé con quién reservar</span><span class="arrow-link">Ayúdame a elegir →</span></button>' +
+      pickListHTML(compatible);
+    modalBody.innerHTML = html;
+    bindPickBarbero();
+    document.getElementById('wizardToggle').addEventListener('click', function(){ wizard.active = true; renderStepBarbero(); });
+    modalFooter.innerHTML = '';
+  }
+
+  /* ---------- Paso 3: Fecha y hora ---------- */
+  var DOW = ['D','L','M','M','J','V','S'];
+  var MESES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  var DIAS_LARGO = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+  var HORARIO_BASE = ['10:00','11:30','13:00','15:00','16:30','18:00','19:00'];
+
+  function renderStepFechaHora(){
+    modalTitle.textContent = 'Fecha y hora';
+    var today = new Date(); today.setHours(0,0,0,0);
+    var year = calViewDate.getFullYear(), month = calViewDate.getMonth();
+    var firstDay = new Date(year, month, 1);
+    var startOffset = firstDay.getDay();
+    var daysInMonth = new Date(year, month+1, 0).getDate();
+    var isCurrentMonth = (year === today.getFullYear() && month === today.getMonth());
+
+    var cal = '<div class="cal-nav">' +
+      '<button class="cal-nav-btn" id="calPrev"'+(isCurrentMonth?' disabled':'')+'><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>' +
+      '<span class="cal-nav-label">'+MESES[month]+' '+year+'</span>' +
+      '<button class="cal-nav-btn" id="calNext"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>' +
+      '</div><div class="cal-grid">';
+    DOW.forEach(function(d){ cal += '<span class="cal-dow">'+d+'</span>'; });
+    for(var e=0;e<startOffset;e++){ cal += '<span class="cal-day is-empty"></span>'; }
+    for(var day=1; day<=daysInMonth; day++){
+      var d = new Date(year, month, day);
+      var isPast = d < today;
+      var isSunday = d.getDay() === 0;
+      var disabled = isPast || isSunday;
+      var isSel = booking.fechaObj && d.getTime() === booking.fechaObj.getTime();
+      cal += '<button class="cal-day'+(isSel?' is-selected':'')+'" data-day="'+day+'"'+(disabled?' disabled':'')+'>'+day+'</button>';
+    }
+    cal += '</div>';
+
+    var timeHTML = '';
+    if(booking.fechaObj){
+      timeHTML = '<p class="time-label">Horarios disponibles</p><div class="time-grid">';
+      HORARIO_BASE.forEach(function(h){
+        var sel = booking.hora === h;
+        timeHTML += '<button class="time-slot'+(sel?' is-selected':'')+'" data-hora="'+h+'">'+h+'</button>';
+      });
+      timeHTML += '</div>';
+    }
+
+    modalBody.innerHTML = summaryHTML() + cal + timeHTML;
+
+    var prevBtn = document.getElementById('calPrev');
+    var nextBtn = document.getElementById('calNext');
+    if(prevBtn) prevBtn.addEventListener('click', function(){ calViewDate.setMonth(calViewDate.getMonth()-1); renderStepFechaHora(); });
+    nextBtn.addEventListener('click', function(){ calViewDate.setMonth(calViewDate.getMonth()+1); renderStepFechaHora(); });
+
+    modalBody.querySelectorAll('[data-day]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var dnum = parseInt(btn.getAttribute('data-day'),10);
+        var chosen = new Date(year, month, dnum);
+        booking.fechaObj = chosen;
+        booking.fechaLabel = DIAS_LARGO[chosen.getDay()].charAt(0).toUpperCase() + DIAS_LARGO[chosen.getDay()].slice(1) + ' ' + dnum + ' de ' + MESES[month];
+        booking.hora = null;
+        renderStepFechaHora();
+      });
+    });
+    modalBody.querySelectorAll('[data-hora]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        booking.hora = btn.getAttribute('data-hora');
+        renderStepFechaHora();
+      });
+    });
+
+    var ready = booking.fechaObj && booking.hora;
+    modalFooter.innerHTML = '<button class="btn btn-primary" id="btnStep3Continue"'+(ready?'':' disabled')+'>Continuar →</button>';
+    var cont = document.getElementById('btnStep3Continue');
+    if(cont) cont.addEventListener('click', function(){ booking.step = 4; renderModal(); });
+  }
+
+  /* ---------- Paso 4: Datos personales ---------- */
+  function renderStepDatos(){
+    modalTitle.textContent = 'Tus datos';
+    modalBody.innerHTML = summaryHTML() +
+      '<div class="form-field" id="fieldNombre"><label for="inpNombre">Nombre completo</label>' +
+        '<input type="text" id="inpNombre" value="'+booking.nombre+'" autocomplete="name">' +
+        '<p class="form-error">Ingresa tu nombre completo.</p></div>' +
+      '<div class="form-field" id="fieldTelefono"><label for="inpTelefono">Teléfono</label>' +
+        '<input type="tel" id="inpTelefono" value="'+booking.telefono+'" autocomplete="tel">' +
+        '<p class="form-error">Ingresa un teléfono válido.</p></div>' +
+      '<div class="form-field" id="fieldCorreo"><label for="inpCorreo">Correo electrónico</label>' +
+        '<input type="email" id="inpCorreo" value="'+booking.correo+'" autocomplete="email">' +
+        '<p class="form-error">Ingresa un correo válido.</p></div>' +
+      '<div class="form-field"><label for="inpComentario">Comentario (opcional)</label>' +
+        '<textarea id="inpComentario">'+booking.comentario+'</textarea></div>';
+
+    modalFooter.innerHTML = '<button class="btn btn-primary" id="btnEnviarSolicitud">Enviar solicitud</button>';
+    document.getElementById('btnEnviarSolicitud').addEventListener('click', function(){
+      var nombre = document.getElementById('inpNombre').value.trim();
+      var telefono = document.getElementById('inpTelefono').value.trim();
+      var correo = document.getElementById('inpCorreo').value.trim();
+      var comentario = document.getElementById('inpComentario').value.trim();
+
+      var valid = true;
+      function setError(id, hasError){ document.getElementById(id).classList.toggle('has-error', hasError); }
+      if(nombre.length < 3){ setError('fieldNombre', true); valid = false; } else setError('fieldNombre', false);
+      if(telefono.replace(/\D/g,'').length < 10){ setError('fieldTelefono', true); valid = false; } else setError('fieldTelefono', false);
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)){ setError('fieldCorreo', true); valid = false; } else setError('fieldCorreo', false);
+      if(!valid) return;
+
+      booking.nombre = nombre; booking.telefono = telefono; booking.correo = correo; booking.comentario = comentario;
+      booking.step = 5;
+      renderModal();
+    });
+  }
+
+  /* ---------- Resultado: solicitud enviada ---------- */
+  function renderConfirmacion(){
+    modalTitle.textContent = 'Solicitud enviada';
+    modalBack.hidden = true;
+    modalProgress.style.width = '100%';
+    var s = byId(SERVICES, booking.servicio);
+    var b = byId(BARBERS, booking.barbero);
+    var price = s ? s.price[currentRegion] : 0;
+    var priceLabel = booking.promo ? money(Math.round(price * 0.85)) + ' (15% aplicado)' : money(price);
+
+    modalBody.innerHTML =
+      '<div class="confirm-icon">'+ICONS.check+'</div>' +
+      '<p class="confirm-title">Solicitud enviada</p>' +
+      '<p class="confirm-text">Tu solicitud fue enviada correctamente. El barbero deberá aceptarla para confirmar tu cita.</p>' +
+      '<div class="confirm-details">' +
+        '<div class="confirm-row"><span>Servicio</span><span>'+(s?s.name:'—')+'</span></div>' +
+        '<div class="confirm-row"><span>Barbero</span><span>'+(b?b.name:'—')+'</span></div>' +
+        '<div class="confirm-row"><span>Fecha</span><span>'+(booking.fechaLabel||'—')+'</span></div>' +
+        '<div class="confirm-row"><span>Hora</span><span>'+(booking.hora||'—')+'</span></div>' +
+        '<div class="confirm-row"><span>Precio</span><span>'+priceLabel+'</span></div>' +
+        '<div class="confirm-row"><span>Duración</span><span>'+(s?s.duration:'—')+'</span></div>' +
+        '<div class="confirm-row"><span>Pago</span><span>En la barbería</span></div>' +
+      '</div>' +
+      '<div style="text-align:center;"><span class="confirm-status">Pendiente de confirmación</span></div>';
+
+    modalFooter.innerHTML = '<button class="btn btn-primary" id="btnCerrarConfirmacion">Listo</button>' +
+      '<div class="modal-footer-secondary"><button id="btnNuevaReserva">Reservar otra cita</button></div>';
+    document.getElementById('btnCerrarConfirmacion').addEventListener('click', function(){ closeBookingModal(); resetBooking(); });
+    document.getElementById('btnNuevaReserva').addEventListener('click', function(){ resetBooking(); renderModal(); });
+  }
+
+})();
+</script>
+</body>
+</html>
